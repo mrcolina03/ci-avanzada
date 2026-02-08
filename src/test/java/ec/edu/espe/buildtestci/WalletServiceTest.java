@@ -111,5 +111,33 @@ public class WalletServiceTest {
         verify(walletRepository, never()).save(any());
     }
 
+    @Test
+    void getBalance_existingWallet_shouldReturnBalance() {
+        // Arrange
+        Wallet wallet = new Wallet("balancer@espe.edu.ec", 420.5);
+        String walletId = wallet.getId();
+        when(walletRepository.findById(walletId)).thenReturn(Optional.of(wallet));
+
+        // Act
+        double balance = walletService.getBalance(walletId);
+
+        // Assert
+        assertEquals(420.5, balance);
+        verify(walletRepository).findById(walletId);
+    }
+
+    @Test
+    void getBalance_walletNotFound_shouldThrow() {
+        // Arrange
+        String walletId = "missing-wallet";
+        when(walletRepository.findById(walletId)).thenReturn(Optional.empty());
+
+        // Act + Assert
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> walletService.getBalance(walletId));
+        assertEquals("Wallet not found", exception.getMessage());
+        verify(walletRepository).findById(walletId);
+    }
+
+
 
 }

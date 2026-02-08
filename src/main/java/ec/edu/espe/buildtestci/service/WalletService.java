@@ -79,4 +79,10 @@ public class WalletService {
 
         return wallet.getBalance();
     }
+
+    // Consultar saldo de una wallet por id
+    public double getBalance(String walletId) {
+        Wallet wallet = walletRepository.findById(walletId).orElseThrow(() -> new IllegalArgumentException("Wallet not found"));
+        return wallet.getBalance();
+    }
 }
