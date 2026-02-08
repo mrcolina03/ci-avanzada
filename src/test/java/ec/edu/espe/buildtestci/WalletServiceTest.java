@@ -96,7 +96,7 @@ public class WalletServiceTest {
         Wallet saved = captor.getValue();
         assertEquals(600.0, saved.getBalance());
     }
-
+/*
     //Prueba de retiro de money
     @Test
     void withdraw_insufficientFunds_shouldThrow_andNotSave() {
@@ -110,6 +110,6 @@ public class WalletServiceTest {
         assertEquals("Insufficient funds", exception.getMessage());
         verify(walletRepository, never()).save(any());
     }
-
+*/
 
 }

@@ -59,7 +59,7 @@ public class WalletService {
 
         return wallet.getBalance();
     }
-
+/*
     // Retiro de dinero
     public double withdraw(String walletId, double amount) {
         //validaciones
@@ -79,4 +79,6 @@ public class WalletService {
 
         return wallet.getBalance();
     }
+
+ */
 }
